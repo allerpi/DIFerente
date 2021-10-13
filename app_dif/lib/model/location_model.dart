@@ -12,7 +12,7 @@ class LocationModel{
   late String name;
 
   LocationModel.fromJSON(Map<String, dynamic> json){
-    this.id = json[keyLocationID];
+    this.locationID = json[keyLocationID];
     this.latitude = json[keyLatitudeID];
     this.longitude = json[keyLongitudeID];
     this.address = json[keyAddressID];

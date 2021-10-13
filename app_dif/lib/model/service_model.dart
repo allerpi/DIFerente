@@ -1,6 +1,7 @@
-import 'locationModel.dart';
-import 'imageModel.dart';
-import '../controller/databaseController.dart';
+import 'location_model.dart';
+import 'image_model.dart';
+import 'schedule_model.dart';
+import '../controller/database_controller.dart';
 
 const keyId = 'idServicio';
 const keyName = 'nombre';
@@ -19,13 +20,10 @@ class ServiceModel {
     this.serviceID = json[keyId];
     this.name = json[keyName];
     this.description = json[keyDescription];
-    this.contact = json[keyContact];
+    // this.contact = json[keyContact];
   }
 
   void getLocations() async {
     this.locations = await DatabaseController.getLocations(this.serviceID);
   }
-
-
-
 }

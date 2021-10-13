@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/material/colors.dart';
-import 'controller/databaseController.dart';
-import 'model/serviceModel.dart';
+import 'controller/database_controller.dart';
+import 'model/service_model.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,12 +11,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp( 
+    return MaterialApp(
       title: 'DIF Huixquilucan',
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home:  MyHomePage(title: 'DIF Huixquilucan'),
+      home: MyHomePage(title: 'DIF Huixquilucan'),
     );
   }
 }
@@ -34,11 +34,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void initState() {
     DatabaseController dbController = DatabaseController();
-    dbController.getOneService("2").then((s){
-      setState((){
+    dbController.getOneService("2").then((s) {
+      setState(() {
         servicio = s;
-      })
-    })
+      });
+    });
   }
 
   @override
@@ -55,11 +55,9 @@ class _MyHomePageState extends State<MyHomePage> {
               servicio.name, // Deberia decir el nombre del servicio
               style: Theme.of(context).textTheme.headline4,
             ),
-
           ],
         ),
       ),
-
     );
   }
 }

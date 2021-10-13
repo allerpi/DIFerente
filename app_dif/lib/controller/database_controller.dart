@@ -4,12 +4,12 @@ import 'dart:convert';
 import 'dart:async';
 import 'dart:core';
 
-import '../model/imageModel.dart';
-import '../model/locationModel.dart';
-import '../model/reservationModel.dart';
-import '../model/serviceModel.dart';
-import '../model/categoryModel.dart';
-import '../model/scheduleModel.dart';
+import '../model/image_model.dart';
+import '../model/location_model.dart';
+import '../model/reservation_model.dart';
+import '../model/service_model.dart';
+import '../model/category_model.dart';
+import '../model/schedule_model.dart';
 
 // Hacer algún método para almacenar resultados en memoria, y recuperarlos de ahí cuando no haya conexión
 
@@ -43,10 +43,10 @@ class DatabaseController{
     //     return services;
     // }
     // GET /servicios/:id
-    Future<ServiceModel?> getOneService(String id) async {
+    Future<ServiceModel> getOneService(String id) async {
         Uri uri = Uri.parse('https://localhost:3000/servicios/'+id);
         http.Response result = await http.get(uri);
-        if (result.statusCode != HttpStatus.ok) return null;
+        if (result.statusCode != HttpStatus.ok) return ServiceModel();
         final jsonResponse = json.decode(result.body);
         return ServiceModel.fromJSON(jsonResponse);
     }
@@ -64,14 +64,14 @@ class DatabaseController{
         http.Response result = await http.get(uri);
         if (result.statusCode != HttpStatus.ok) return [];
         final jsonResponse = json.decode(result.body);
-        return jsonResponse.map<ScheduleModels>((location) => ScheduleModels.fromJSON(location)).toList();
+        return jsonResponse.map<ScheduleModel>((location) => ScheduleModel.fromJSON(location)).toList();
     }
     // POST /reservaciones
     Future<String> createReservation(ReservationModel reservation) async {
         // Convert ReservationModel to JSON
-        String data = json.encode(reservation.toJson());
+        String data = json.encode(reservation.toJSON());
         Uri uri = Uri.parse('https://localhost:3000/reservaciones/');
-        https.Response result = await https.post(url, body: data);
+        http.Response result = await http.post(uri, body: data);
         return result.body;
     }
 }
