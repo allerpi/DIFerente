@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import '../model/service_model.dart';
 
 class ServiceCard extends StatelessWidget {
-  ServiceModel service;
+  late ServiceModel service;
   // Constructor
-  ServiceCard(ServiceModel service) {
-    this.service = service;
-  }
+  // ServiceCard(ServiceModel service) {
+  //   this.service = service;
+  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

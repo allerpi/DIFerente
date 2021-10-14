@@ -4,6 +4,8 @@ import 'dart:convert';
 import 'dart:async';
 import 'dart:core';
 
+import 'dart:developer' as developer;
+
 import '../model/image_model.dart';
 import '../model/location_model.dart';
 import '../model/reservation_model.dart';
@@ -11,22 +13,25 @@ import '../model/service_model.dart';
 import '../model/category_model.dart';
 import '../model/schedule_model.dart';
 
+//---------------------------metodos API-------
 // Hacer algún método para almacenar resultados en memoria, y recuperarlos de ahí cuando no haya conexión
 
 class DatabaseController{
     // GET /categorias
     Future<List<CategoryModel>?> getCategories() async {
-        Uri uri = Uri.parse('https://localhost:3000/categorias');
+        Uri uri = Uri.parse('http://localhost:3000/categorias');
+        //get obtiene json y los guarda en result
         http.Response result = await http.get(uri);
         if(result.statusCode != HttpStatus.ok) return [];
         final jsonResponse = json.decode(result.body);
         // [{categoira: "qqq", "COUNT(cateogria)": 3}, {},]
+        //lista de objetos catehory
         List<CategoryModel> categories = jsonResponse.map<CategoryModel>((category) => CategoryModel.fromJSON(category)).toList();
         return categories;
     }
     // GET /categorias/:categoria
     Future<List<ServiceModel>?> getServicesInCategory(String category) async {
-        Uri uri = Uri.parse('https://localhost:3000/categorias/'+category);
+        Uri uri = Uri.parse('http://localhost:3000/categorias/'+category);
         http.Response result = await http.get(uri);
         if(result.statusCode != HttpStatus.ok) return [];
         final jsonResponse = json.decode(result.body);
@@ -35,24 +40,30 @@ class DatabaseController{
     }
     // GET /servicios
     // Future<List<ServiceModel>?> getServicesList() async {
-    //     Uri uri = Uri.parse('https://localhost:3000/servicios')
+    //     Uri uri = Uri.parse('http://localhost:3000/servicios')
     //     http.Response result = await http.get(url);
-    //     if (result.statusCode != HttpStatus.ok) return null;
+    //     if (result.statusCode != httptatus.ok) return null;
     //     final jsonResponse = json.decode(result.body);
     //     List<ServiceModel> services = jsonResponse.map<ServiceModel>((service) => ServiceModel.fromJSON(service)).toList();
     //     return services;
     // }
     // GET /servicios/:id
     Future<ServiceModel> getOneService(String id) async {
-        Uri uri = Uri.parse('https://localhost:3000/servicios/'+id);
+        developer.log('Works here');
+        Uri uri = Uri.parse('http://localhost:3000/servicios/'+id);
         http.Response result = await http.get(uri);
-        if (result.statusCode != HttpStatus.ok) return ServiceModel();
+        
+
+        if (result.statusCode != HttpStatus.ok) {
+            developer.log('No ok');
+            //return ServiceModel();
+        }
         final jsonResponse = json.decode(result.body);
         return ServiceModel.fromJSON(jsonResponse);
     }
     // GET /ubicaciones/:id
     Future<List<LocationModel>> getServiceLocations(String id) async {
-        Uri uri = Uri.parse('https://localhost:3000/ubicaciones/'+id);
+        Uri uri = Uri.parse('http://localhost:3000/ubicaciones/'+id);
         http.Response result = await http.get(uri);
         if (result.statusCode != HttpStatus.ok) return [];
         final jsonResponse = json.decode(result.body);
@@ -60,7 +71,7 @@ class DatabaseController{
     }
     // GET /horarios/:id
     Future<List<ScheduleModel>> getServiceSchedules(String id) async {
-        Uri uri = Uri.parse('https://localhost:3000/horarios/'+id);
+        Uri uri = Uri.parse('http://localhost:3000/horarios/'+id);
         http.Response result = await http.get(uri);
         if (result.statusCode != HttpStatus.ok) return [];
         final jsonResponse = json.decode(result.body);
@@ -70,7 +81,7 @@ class DatabaseController{
     Future<String> createReservation(ReservationModel reservation) async {
         // Convert ReservationModel to JSON
         String data = json.encode(reservation.toJSON());
-        Uri uri = Uri.parse('https://localhost:3000/reservaciones/');
+        Uri uri = Uri.parse('http://localhost:3000/reservaciones/');
         http.Response result = await http.post(uri, body: data);
         return result.body;
     }

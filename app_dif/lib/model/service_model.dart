@@ -8,15 +8,20 @@ const keyName = 'nombre';
 const keyDescription = 'descripcion';
 
 class ServiceModel {
-  late int serviceID;
+  late String serviceID;
   late String name;
   late String description;
-  // 
+  //
   late ImageModel image;
   late List<LocationModel> locations;
   late List<ScheduleModel> schedules;
+  DatabaseController dbController = DatabaseController();
 
-  static fromJSON(Map<String, dynamic> json) {
+  ServiceModel() {
+    this.name = 'Servicio no disponible';
+  }
+
+  ServiceModel.fromJSON(Map<String, dynamic> json) {
     this.serviceID = json[keyId];
     this.name = json[keyName];
     this.description = json[keyDescription];
@@ -24,6 +29,6 @@ class ServiceModel {
   }
 
   void getLocations() async {
-    this.locations = await DatabaseController.getLocations(this.serviceID);
+    this.locations = await dbController.getServiceLocations(this.serviceID);
   }
 }
