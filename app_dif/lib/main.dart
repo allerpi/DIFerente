@@ -10,7 +10,6 @@ void main() {
   runApp(MyApp());
 }
 
-
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -38,68 +37,58 @@ class _MyHomePageState extends State<MyHomePage> {
   DatabaseController dbController = DatabaseController();
   ServiceModel servicio = ServiceModel();
 
-  List<CategoryModel> categories = []; 
+  late Future<List<CategoryModel>> categories;
 
   @override
   void initState() {
-    categorias();
     super.initState();
-
+    categories = fetchCategorias();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: FutureBuilder(
-        future: categorias(), //Vuelve a llamar
-          builder: (BuildContext context, AsyncSnapshot<List<CategoryModel>> categorias) {
-            return ListView.builder(
-                itemCount: categorias.length,
-                itemBuilder: (BuildContext context, int position) {
-                  return Container(
-                    key: Key(position.toString()),
-                    // Podríamos ponerle un Text solamente, o no sé cómo queramos que se vea
-                    // Yo digo qu 2, la categoroia y su count
-                      child: ListTile(
-                        title: Text(categorias.data![position].name),
-                        subtitle: Text(categorias.data![position].count),
-                        onTap: () { 
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    CategoryScreen()),
-                          );
-                          /// Aqui llamariamos a otro ventana
-                          // Sii, esa ya sería la segunda pantalla en otra clase. De hecho iré haciendo el archivo, vavav para  probar
-                          // Ayy lo borré y no puedo hacer ctrl z :/ /no te preocuoes jaja
-                        },
-                      )
-                    // Acá iría
-                    // Esto?? Sii creo
-                    // Cual seria la  diferencia con dissmisable? que se pudede  borrar?
-                    // Dismissable es para los elementos de lista que les puedes hacer swipe para eliminar ah vbvavav
-                  );
-                }
-            );
-          }
-      )
-    );
+        appBar: AppBar(
+          title: Text(widget.title),
+        ),
+        body: FutureBuilder(
+            future: categories,
+            builder: (BuildContext context,
+                AsyncSnapshot<List<CategoryModel>> categorias) {
+              return ListView.builder(
+                  itemCount: categorias.data!.length,
+                  itemBuilder: (BuildContext context, int position) {
+                    return Container(
+                        key: Key(position.toString()),
+                        child: ListTile(
+                          title: Text(categorias.data![position].name),
+                          subtitle: Text(categorias.data![position].count),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => CategoryScreen()),
+                            );
+
+                            /// Aqui llamariamos a otro ventana
+                          },
+                        )
+                        // Acá iría
+                        // Esto?? Sii creo
+                        // Cual seria la  diferencia con dissmisable? que se pudede  borrar?
+                        // Dismissable es para los elementos de lista que les puedes hacer swipe para eliminar
+                        );
+                  });
+              }
+        )
+      );
   }
 
-
-  // Editamos este?? para categorias?  
+  // Editamos este?? para categorias?
   // Sii me late
-  Future<void> categorias() async {
-    List<CategoryModel> _categories = [];
-    _categories = await dbController.getCategories() as List<CategoryModel>;
+  Future<List<CategoryModel>> fetchCategorias() async {
     developer.log('esto es el call a categorias');
-    setState((){
-      categories = _categories;
-    });
+    return await dbController.getCategories() as List<CategoryModel>;
   }
 
   //En main2 esta como se  uso la  lista de pizzas
@@ -123,8 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
   //                           element.id == pizzas.data![position].id);
   //                       helper.deletePizza(pizzas.data![position].id);
   //                     },
-                
-                
+
   //                     key: Key(position.toString()),
   //                     child: ListTile(
   //                       title: Text(pizzas.data![position].pizzaName),
@@ -153,10 +141,9 @@ class _MyHomePageState extends State<MyHomePage> {
   //         }),
   //   );
   // }
-  
+
   // Future<List<ServiceModel>> () async {
   //   return pizzas;
   // }
 
 }
-
