@@ -111,4 +111,5 @@ app.post('/reservacion', (req, res) => {
 
 // PORT
 const port = 3000;
-app.listen(port, () => console.log(`Listening on port ${port}...`));
+const host = "0.0.0.0"
+app.listen(port, host, () => console.log(`Listening on port ${port}...`));
