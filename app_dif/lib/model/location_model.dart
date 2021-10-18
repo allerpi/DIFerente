@@ -5,11 +5,11 @@ const keyAddressID = 'address';
 const keyName = 'name';
 
 class LocationModel{
-  late int locationID;
-  late double latitude;
-  late double longitude;
-  late String address;
-  late String name;
+  late int locationID = 0;
+  late double latitude = 0;
+  late double longitude = 0;
+  late String address = "";
+  late String name = "";
 
   LocationModel.fromJSON(Map<String, dynamic> json){
     this.locationID = json[keyLocationID];

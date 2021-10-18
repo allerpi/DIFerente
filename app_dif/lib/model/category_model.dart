@@ -4,8 +4,8 @@ const keyname = 'categoria';
 const keycount = 'COUNT(categoria)';
 
 class CategoryModel {
-    late String name;
-    late String count;
+    String name = 'Categoría no disponible';
+    int count = 0;
 
     CategoryModel.fromJSON(Map<String, dynamic> json){
         this.name = json[keyname];

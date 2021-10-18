@@ -8,9 +8,9 @@ const keyDate = 'fecha';
 const keyServiceID = 'IDservicio';
 
 class ReservationModel {
-    late String username;
-    late int age;
-    late String mail;
+    late String username = "";
+    late int age = 0;
+    late String mail = "";
     late String phoneNumber;
     late String date;
     late int serviceID;

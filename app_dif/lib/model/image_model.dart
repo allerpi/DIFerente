@@ -3,10 +3,12 @@ const keyPath = 'path';
 const keyDescription = 'descripcion';
 
 class ImageModel{
-    late String name;
-    late String path;
-    late String description; 
-    
+    late String name = "";
+    late String path = "";
+    late String description = ""; 
+    ImageModel(){
+
+    }
     ImageModel.fromJSON(Map<String, dynamic> json){
         this.name = json[keyName];
         this.path = json[keyPath];
