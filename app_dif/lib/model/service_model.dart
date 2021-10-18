@@ -8,13 +8,13 @@ const keyName = 'nombre';
 const keyDescription = 'descripcion';
 
 class ServiceModel {
-  late String serviceID;
-  late String name;
-  late String description;
+  int serviceID = 0;
+  String name = '';
+  String description = '';
   //
-  late ImageModel image;
-  late List<LocationModel> locations;
-  late List<ScheduleModel> schedules;
+  ImageModel image = ImageModel();
+  List<LocationModel> locations = [];
+  List<ScheduleModel> schedules = [];
   DatabaseController dbController = DatabaseController();
 
   ServiceModel() {
@@ -25,7 +25,6 @@ class ServiceModel {
     this.serviceID = json[keyId];
     this.name = json[keyName];
     this.description = json[keyDescription];
-    // this.contact = json[keyContact];
   }
 
   void getLocations() async {

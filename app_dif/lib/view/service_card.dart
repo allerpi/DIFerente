@@ -2,16 +2,30 @@ import 'package:flutter/material.dart';
 import '../model/service_model.dart';
 
 class ServiceCard extends StatelessWidget {
-  late ServiceModel service;
-  // Constructor
-  // ServiceCard(ServiceModel service) {
-  //   this.service = service;
-  // }
+  ServiceModel service = ServiceModel();
+  Function(int id) onPress;
+  ServiceCard({Key? key, required this.service, required this.onPress}) : super(key: key);
+
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(title: Text("Servicio DIF")),
-        body: Container(child: Text('Aca va la descripcion del servicio'))
+    // https://api.flutter.dev/flutter/material/Card-class.html
+    return Card(
+      child: InkWell(
+        splashColor: Colors.blue.withAlpha(30), 
+        child: Column(
+          children: <Widget> [
+            ListTile(
+              // Aca podemos ponerle que cambie el ícono según la categoría maybe
+              leading: Icon(Icons.album), 
+              title: Text(this.service.name)
+            )
+          ]
+        ),
+        onTap: (){
+          onPress(this.service.serviceID);
+        },
+      )
     );
   }
 }

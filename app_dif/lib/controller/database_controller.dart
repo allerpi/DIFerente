@@ -19,7 +19,7 @@ import '../model/schedule_model.dart';
 class DatabaseController{
     // GET /categorias
     Future<List<CategoryModel>?> getCategories() async {
-        Uri uri = Uri.parse('http://localhost:3000/categorias');
+        Uri uri = Uri.parse('http://192.168.0.12:3000/categorias');
         //get obtiene json y los guarda en result
         http.Response result = await http.get(uri);
         if(result.statusCode != HttpStatus.ok) return [];
@@ -31,7 +31,7 @@ class DatabaseController{
     }
     // GET /categorias/:categoria
     Future<List<ServiceModel>?> getServicesInCategory(String category) async {
-        Uri uri = Uri.parse('http://localhost:3000/categorias/'+category);
+        Uri uri = Uri.parse('http://192.168.0.12:3000/categorias/'+category);
         http.Response result = await http.get(uri);
         if(result.statusCode != HttpStatus.ok) return [];
         final jsonResponse = json.decode(result.body);
@@ -40,7 +40,7 @@ class DatabaseController{
     }
     // GET /servicios
     // Future<List<ServiceModel>?> getServicesList() async {
-    //     Uri uri = Uri.parse('http://localhost:3000/servicios')
+    //     Uri uri = Uri.parse('http://192.168.0.12:3000/servicios')
     //     http.Response result = await http.get(url);
     //     if (result.statusCode != httptatus.ok) return null;
     //     final jsonResponse = json.decode(result.body);
@@ -48,9 +48,9 @@ class DatabaseController{
     //     return services;
     // }
     // GET /servicios/:id
-    Future<ServiceModel> getOneService(String id) async {
+    Future<ServiceModel> getOneService(int id) async {
         developer.log('Works here');
-        Uri uri = Uri.parse('http://localhost:3000/servicios/'+id);
+        Uri uri = Uri.parse('http://192.168.0.12:3000/servicios/'+id.toString());
         http.Response result = await http.get(uri);
         
 
@@ -62,26 +62,26 @@ class DatabaseController{
         return ServiceModel.fromJSON(jsonResponse);
     }
     // GET /ubicaciones/:id
-    Future<List<LocationModel>> getServiceLocations(String id) async {
-        Uri uri = Uri.parse('http://localhost:3000/ubicaciones/'+id);
+    Future<List<LocationModel>> getServiceLocations(int id) async {
+        Uri uri = Uri.parse('http://192.168.0.12:3000/ubicaciones/'+id.toString());
         http.Response result = await http.get(uri);
         if (result.statusCode != HttpStatus.ok) return [];
         final jsonResponse = json.decode(result.body);
         return jsonResponse.map<LocationModel>((location) => LocationModel.fromJSON(location)).toList();
     }
     // GET /horarios/:id
-    Future<List<ScheduleModel>> getServiceSchedules(String id) async {
-        Uri uri = Uri.parse('http://localhost:3000/horarios/'+id);
+    Future<List<ScheduleModel>> getServiceSchedules(int id) async {
+        Uri uri = Uri.parse('http://192.168.0.12:3000/horarios/'+id.toString());
         http.Response result = await http.get(uri);
         if (result.statusCode != HttpStatus.ok) return [];
         final jsonResponse = json.decode(result.body);
-        return jsonResponse.map<ScheduleModel>((location) => ScheduleModel.fromJSON(location)).toList();
+        return jsonResponse.map<ScheduleModel>((schedule) => ScheduleModel.fromJSON(schedule)).toList();
     }
     // POST /reservaciones
     Future<String> createReservation(ReservationModel reservation) async {
         // Convert ReservationModel to JSON
         String data = json.encode(reservation.toJSON());
-        Uri uri = Uri.parse('http://localhost:3000/reservaciones/');
+        Uri uri = Uri.parse('http://192.168.0.12:3000/reservaciones/');
         http.Response result = await http.post(uri, body: data);
         return result.body;
     }

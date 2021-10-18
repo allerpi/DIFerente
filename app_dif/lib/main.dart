@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'DIF Huixquilucan',
       theme: ThemeData(
-        primarySwatch: Colors.red,
+        primarySwatch: Colors.blue,
       ),
       home: MyHomePage(title: 'DIF Huixquilucan'),
     );
@@ -62,12 +62,12 @@ class _MyHomePageState extends State<MyHomePage> {
                         key: Key(position.toString()),
                         child: ListTile(
                           title: Text(categorias.data![position].name),
-                          subtitle: Text(categorias.data![position].count),
+                          subtitle: Text(categorias.data![position].count.toString()),
                           onTap: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => CategoryScreen()),
+                                  builder: (context) => CategoryScreen(categoria: categorias.data![position].name)),
                             );
 
                             /// Aqui llamariamos a otro ventana
