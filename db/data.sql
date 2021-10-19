@@ -7,7 +7,7 @@
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8mb4 */;
+/*!50503 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -16,64 +16,14 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Current Database: `dif_huixquilucan`
+-- Dumping data for table `horariosservicios`
 --
 
-/*!40000 DROP DATABASE IF EXISTS `dif_huixquilucan`*/;
-
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `dif_huixquilucan` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-
-USE `dif_huixquilucan`;
-
---
--- Table structure for table `horariosServicios`
---
-
-DROP TABLE IF EXISTS `horariosServicios`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `horariosServicios` (
-  `idHorario` int NOT NULL AUTO_INCREMENT,
-  `idServicio` int NOT NULL,
-  `diaSemana` varchar(30) NOT NULL,
-  `horaInicio` time NOT NULL,
-  `horaFin` time NOT NULL,
-  `idUbicacion` int NOT NULL,
-  PRIMARY KEY (`idHorario`),
-  KEY `horServServ_FK_idx` (`idServicio`),
-  KEY `horServUbi_FK_idx` (`idUbicacion`),
-  CONSTRAINT `horServServ_FK` FOREIGN KEY (`idServicio`) REFERENCES `servicios` (`idServicio`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `horServUbi_FK` FOREIGN KEY (`idUbicacion`) REFERENCES `ubicaciones` (`idUbicacion`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `horariosServicios`
---
-
-LOCK TABLES `horariosServicios` WRITE;
-/*!40000 ALTER TABLE `horariosServicios` DISABLE KEYS */;
-/*!40000 ALTER TABLE `horariosServicios` ENABLE KEYS */;
+LOCK TABLES `horariosservicios` WRITE;
+/*!40000 ALTER TABLE `horariosservicios` DISABLE KEYS */;
+INSERT INTO `horariosservicios` VALUES (1,7,'lunes-jueves','09:00:00','17:00:00',1),(2,7,'viernes','09:00:00','15:00:00',1),(3,7,'lunes-jueves','09:00:00','17:00:00',51),(4,7,'lunes-jueves','09:00:00','17:00:00',51),(5,7,'lunes-jueves','09:00:00','17:00:00',38),(6,7,'lunes-jueves','09:00:00','17:00:00',38),(7,8,'lunes-jueves','09:00:00','17:00:00',43),(8,8,'viernes','09:00:00','15:00:00',43),(9,8,'lunes-jueves','09:00:00','17:00:00',52),(10,8,'viernes','09:00:00','15:00:00',52),(11,8,'lunes-jueves','09:00:00','17:00:00',57),(12,8,'viernes','09:00:00','15:00:00',57),(13,8,'lunes-jueves','09:00:00','17:00:00',49),(14,8,'viernes','09:00:00','15:00:00',49),(15,8,'lunes-jueves','09:00:00','17:00:00',59),(16,8,'viernes','09:00:00','15:00:00',59),(17,13,'diario','12:30:00','15:00:00',51),(18,14,'diario','12:30:00','15:00:00',59),(19,11,'lunes-viernes','08:00:00','20:00:00',56),(20,11,'lunes-viernes','08:00:00','16:00:00',56),(21,11,'lunes-viernes','08:00:00','20:00:00',38),(22,11,'lunes-viernes','08:00:00','16:00:00',38);
+/*!40000 ALTER TABLE `horariosservicios` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `imagenes`
---
-
-DROP TABLE IF EXISTS `imagenes`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `imagenes` (
-  `idImagen` int NOT NULL AUTO_INCREMENT,
-  `idServicio` int NOT NULL,
-  `path` varchar(200) NOT NULL,
-  `nombre` varchar(50) NOT NULL,
-  `descripcion` varchar(500) NOT NULL,
-  PRIMARY KEY (`idImagen`),
-  KEY `imgServ_FK_idx` (`idServicio`),
-  CONSTRAINT `imgServ_FK` FOREIGN KEY (`idServicio`) REFERENCES `servicios` (`idServicio`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `imagenes`
@@ -85,27 +35,6 @@ LOCK TABLES `imagenes` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `reservaciones`
---
-
-DROP TABLE IF EXISTS `reservaciones`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `reservaciones` (
-  `idReservacion` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(100) NOT NULL,
-  `edad` int DEFAULT NULL,
-  `correo` varchar(150) DEFAULT NULL,
-  `telefono` varchar(20) DEFAULT NULL,
-  `fecha` datetime NOT NULL,
-  `idServicio` int NOT NULL,
-  PRIMARY KEY (`idReservacion`),
-  KEY `reservServ_FK_idx` (`idServicio`),
-  CONSTRAINT `reservServ_FK` FOREIGN KEY (`idServicio`) REFERENCES `servicios` (`idServicio`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `reservaciones`
 --
 
@@ -113,22 +42,6 @@ LOCK TABLES `reservaciones` WRITE;
 /*!40000 ALTER TABLE `reservaciones` DISABLE KEYS */;
 /*!40000 ALTER TABLE `reservaciones` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `servicios`
---
-
-DROP TABLE IF EXISTS `servicios`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `servicios` (
-  `idServicio` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(100) NOT NULL,
-  `descripcion` varchar(500) NOT NULL,
-  `categoria` varchar(50) NOT NULL,
-  PRIMARY KEY (`idServicio`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `servicios`
@@ -141,49 +54,14 @@ INSERT INTO `servicios` VALUES (1,'Estancias Infantiles','Siempre contribuyendo 
 UNLOCK TABLES;
 
 --
--- Table structure for table `serviciosUbicaciones`
+-- Dumping data for table `serviciosubicaciones`
 --
 
-DROP TABLE IF EXISTS `serviciosUbicaciones`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `serviciosUbicaciones` (
-  `idServicio` int DEFAULT NULL,
-  `idUbicacion` int DEFAULT NULL,
-  KEY `servUbicServ_FK_idx` (`idServicio`),
-  KEY `servUbicUbic_FK_idx` (`idUbicacion`),
-  CONSTRAINT `servUbicServ_FK` FOREIGN KEY (`idServicio`) REFERENCES `servicios` (`idServicio`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `servUbicUbic_FK` FOREIGN KEY (`idUbicacion`) REFERENCES `ubicaciones` (`idUbicacion`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `serviciosUbicaciones`
---
-
-LOCK TABLES `serviciosUbicaciones` WRITE;
-/*!40000 ALTER TABLE `serviciosUbicaciones` DISABLE KEYS */;
-INSERT INTO `serviciosUbicaciones` VALUES (1,1),(1,2),(1,38),(1,73),(1,39),(1,40),(1,42),(1,43),(2,45),(2,46),(2,47),(2,48),(2,60),(2,55),(2,54),(2,72),(2,50),(2,71),(2,53),(3,51),(3,64),(3,52),(3,59),(3,66),(3,38),(3,49),(4,1),(4,44),(19,38),(19,49),(20,59),(20,59),(20,49),(20,38),(20,57),(20,43),(20,52),(9,68),(9,67),(10,38),(10,51),(10,49),(10,73),(10,59),(10,52),(10,42),(10,63),(10,39),(10,43),(10,66),(10,61),(10,64),(10,40),(10,1),(10,72),(10,69),(10,70),(10,62),(10,56),(10,58),(10,53),(7,51),(7,38),(8,43),(8,52),(8,57),(8,49),(8,59),(13,38),(13,61),(14,59),(15,43),(11,56),(11,38),(12,52),(12,70);
-/*!40000 ALTER TABLE `serviciosUbicaciones` ENABLE KEYS */;
+LOCK TABLES `serviciosubicaciones` WRITE;
+/*!40000 ALTER TABLE `serviciosubicaciones` DISABLE KEYS */;
+INSERT INTO `serviciosubicaciones` VALUES (1,1),(1,2),(1,38),(1,73),(1,39),(1,40),(1,42),(1,43),(2,45),(2,46),(2,47),(2,48),(2,60),(2,55),(2,54),(2,72),(2,50),(2,71),(2,53),(3,51),(3,64),(3,52),(3,59),(3,66),(3,38),(3,49),(4,1),(4,44),(19,38),(19,49),(20,59),(20,59),(20,49),(20,38),(20,57),(20,43),(20,52),(9,68),(9,67),(10,38),(10,51),(10,49),(10,73),(10,59),(10,52),(10,42),(10,63),(10,39),(10,43),(10,66),(10,61),(10,64),(10,40),(10,1),(10,72),(10,69),(10,70),(10,62),(10,56),(10,58),(10,53),(7,51),(7,38),(8,43),(8,52),(8,57),(8,49),(8,59),(13,38),(13,61),(14,59),(15,43),(11,56),(11,38),(12,52),(12,70);
+/*!40000 ALTER TABLE `serviciosubicaciones` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ubicaciones`
---
-
-DROP TABLE IF EXISTS `ubicaciones`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `ubicaciones` (
-  `idUbicacion` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) NOT NULL,
-  `latitud` decimal(13,10) NOT NULL,
-  `longitud` decimal(13,10) NOT NULL,
-  `direccion` varchar(255) NOT NULL,
-  `activo` tinyint NOT NULL,
-  PRIMARY KEY (`idUbicacion`)
-) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ubicaciones`
@@ -204,4 +82,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-12 11:51:53
+-- Dump completed on 2021-10-18 21:56:21
