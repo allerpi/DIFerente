@@ -58,7 +58,7 @@ class CategoryScreenState extends State<CategoryScreen> {
                   });
               }
         )
-      );
+    );
   }
 
   Future<List<ServiceModel>> fetchServices() async {

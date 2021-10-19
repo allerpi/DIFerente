@@ -49,13 +49,11 @@ class DatabaseController{
     // }
     // GET /servicios/:id
     Future<ServiceModel> getOneService(int id) async {
-        developer.log('Works here');
         Uri uri = Uri.parse('http://192.168.0.12:3000/servicios/'+id.toString());
         http.Response result = await http.get(uri);
         
 
         if (result.statusCode != HttpStatus.ok) {
-            developer.log('No ok');
             //return ServiceModel();
         }
         final jsonResponse = json.decode(result.body);
@@ -63,19 +61,23 @@ class DatabaseController{
     }
     // GET /ubicaciones/:id
     Future<List<LocationModel>> getServiceLocations(int id) async {
-        Uri uri = Uri.parse('http://192.168.0.12:3000/ubicaciones/'+id.toString());
+        String idS =  id.toString();
+        Uri uri = Uri.parse('http://192.168.0.12:3000/ubicaciones/'+idS);
         http.Response result = await http.get(uri);
         if (result.statusCode != HttpStatus.ok) return [];
         final jsonResponse = json.decode(result.body);
-        return jsonResponse.map<LocationModel>((location) => LocationModel.fromJSON(location)).toList();
+        List<LocationModel> locations = jsonResponse.map<LocationModel>((location) => LocationModel.fromJSON(location)).toList();
+        return locations;
     }
     // GET /horarios/:id
     Future<List<ScheduleModel>> getServiceSchedules(int id) async {
-        Uri uri = Uri.parse('http://192.168.0.12:3000/horarios/'+id.toString());
+        String idS = id.toString();
+        Uri uri = Uri.parse('http://192.168.0.12:3000/horarios/'+idS);
         http.Response result = await http.get(uri);
         if (result.statusCode != HttpStatus.ok) return [];
         final jsonResponse = json.decode(result.body);
-        return jsonResponse.map<ScheduleModel>((schedule) => ScheduleModel.fromJSON(schedule)).toList();
+        List<ScheduleModel> schedules = jsonResponse.map<ScheduleModel>((schedule) => ScheduleModel.fromJSON(schedule)).toList();
+        return schedules;
     }
     // POST /reservaciones
     Future<String> createReservation(ReservationModel reservation) async {

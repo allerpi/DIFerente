@@ -53,33 +53,35 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: FutureBuilder(
             future: categories,
-            builder: (BuildContext context,
-                AsyncSnapshot<List<CategoryModel>> categorias) {
-              return ListView.builder(
-                  itemCount: categorias.data!.length,
-                  itemBuilder: (BuildContext context, int position) {
-                    return Container(
-                        key: Key(position.toString()),
-                        child: ListTile(
-                          title: Text(categorias.data![position].name),
-                          subtitle: Text(categorias.data![position].count.toString()),
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => CategoryScreen(categoria: categorias.data![position].name)),
-                            );
+            builder: (BuildContext context, AsyncSnapshot<List<CategoryModel>> categorias) {
+              if (categorias.hasData) {  
+                return ListView.builder(
+                    itemCount: categorias.data!.length,
+                    itemBuilder: (BuildContext context, int position) {
+                      return Container(
+                          key: Key(position.toString()),
+                          child: ListTile(
+                            title: Text(categorias.data![position].name),
+                            subtitle: Text(categorias.data![position].count.toString()),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CategoryScreen(categoria: categorias.data![position].name)),
+                              );
 
-                            /// Aqui llamariamos a otro ventana
-                          },
-                        )
-                        // Acá iría
-                        // Esto?? Sii creo
-                        // Cual seria la  diferencia con dissmisable? que se pudede  borrar?
-                        // Dismissable es para los elementos de lista que les puedes hacer swipe para eliminar
-                        );
-                  });
+                              /// Aqui llamariamos a otro ventana
+                            },
+                          )
+                          // Acá iría
+                          // Esto?? Sii creo
+                          // Cual seria la  diferencia con dissmisable? que se pudede  borrar?
+                          // Dismissable es para los elementos de lista que les puedes hacer swipe para eliminar
+                          );
+                    });
               }
+              return CircularProgressIndicator();
+            }
         )
       );
   }

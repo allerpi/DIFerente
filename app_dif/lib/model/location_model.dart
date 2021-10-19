@@ -1,8 +1,8 @@
-const keyLocationID = 'locationID';
-const keyLatitudeID = 'latitude';
-const keyLongitudeID = 'longitude';
-const keyAddressID = 'address';
-const keyName = 'name';
+const keyLocationID = 'idUbicacion';
+const keyLatitudeID = 'latitud';
+const keyLongitudeID = 'longitud';
+const keyAddressID = 'direccion';
+const keyName = 'nombre';
 
 class LocationModel{
   late int locationID = 0;
