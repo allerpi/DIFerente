@@ -5,9 +5,9 @@ const app = express();
 app.use(express.json());
 
 const connection = mysql.createConnection({
-    host: /* :D */,
-    user: /* :D */,
-    password: /* :D */,
+    host: 'localhost',
+    user: 'root',
+    password: 'mac_15_db',
     database: 'dif_huixquilucan'
 });
 connection.connect();
@@ -73,7 +73,9 @@ app.get('/ubicaciones/:id', (req, res) => {
         }
         else {
             res.send(results);
-        }
+        
+}
+console.log(results);
     })
 });
 
