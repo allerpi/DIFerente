@@ -9,7 +9,7 @@ import Flutter
   ) -> Bool {
     GeneratedPluginRegistrant.register(with: self)
 
-    GMSServices.provideAPIKey("AIzaSyABwmbt_dUgK2vPvSLOOE5mC2L5mSZaopU")
+    // GMSServices.provideAPIKey("AIzaSyABwmbt_dUgK2vPvSLOOE5mC2L5mSZaopU")
 
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }

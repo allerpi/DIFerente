@@ -5,10 +5,10 @@ const app = express();
 app.use(express.json());
 
 const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'mac_15_db',
-    database: 'dif_huixquilucan'
+    host: /* :D */,
+    user: /* :D */,
+    password: /* :D */,
+    database: /* :D */
 });
 connection.connect();
 
@@ -26,7 +26,7 @@ app.get('/categorias', (req, res) => {
 
 // Regresa todos los servicios de una categoría
 app.get('/categorias/:categoria', (req, res) => {
-    connection.query('SELECT idServicio, nombre, descripcion FROM `dif_huixquilucan`.`servicios` WHERE categoria = ?', [req.params.categoria], (err, results, fields) => {
+    connection.query('SELECT * FROM `dif_huixquilucan`.`servicios` WHERE categoria = ?', [req.params.categoria], (err, results, fields) => {
         if (err) {
             res.status(500).send('No se puede establecer conexion con base de datos');
         }

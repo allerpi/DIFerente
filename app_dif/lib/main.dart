@@ -4,6 +4,7 @@ import 'controller/database_controller.dart';
 import 'model/service_model.dart';
 import 'model/category_model.dart';
 import 'view/category_screen.dart';
+import 'view/category_card.dart';
 import 'dart:developer' as developer;
 
 void main() {
@@ -48,42 +49,28 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
+        appBar: AppBar(title: Text(widget.title)),
+        //mostrar categorias
         body: FutureBuilder(
             future: categories,
-            builder: (BuildContext context, AsyncSnapshot<List<CategoryModel>> categorias) {
-              if (categorias.hasData) {  
+            builder: (BuildContext context,
+                AsyncSnapshot<List<CategoryModel>> categorias) {
+              if (categorias.hasData) {
                 return ListView.builder(
                     itemCount: categorias.data!.length,
                     itemBuilder: (BuildContext context, int position) {
-                      return Container(
-                          key: Key(position.toString()),
-                          child: ListTile(
-                            title: Text(categorias.data![position].name),
-                            subtitle: Text(categorias.data![position].count.toString()),
-                            onTap: () {
-                              Navigator.push(
+                      return CategoryCard(
+                          category: categorias.data![position],
+                          onPress: (categoryName) {
+                            Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => CategoryScreen(categoria: categorias.data![position].name)),
-                              );
-
-                              /// Aqui llamariamos a otro ventana
-                            },
-                          )
-                          // Acá iría
-                          // Esto?? Sii creo
-                          // Cual seria la  diferencia con dissmisable? que se pudede  borrar?
-                          // Dismissable es para los elementos de lista que les puedes hacer swipe para eliminar
-                          );
+                                    builder: (context) => CategoryScreen(categoria: categorias.data![position].name)));
+                          },);;
                     });
               }
               return CircularProgressIndicator();
-            }
-        )
-      );
+            }));
   }
 
   // Editamos este?? para categorias?
