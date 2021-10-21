@@ -74,7 +74,7 @@ app.get('/ubicaciones/:id', (req, res) => {
         else {
             res.send(results);
         
-}
+        }
 console.log(results);
     })
 });

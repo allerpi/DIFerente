@@ -73,66 +73,10 @@ class _MyHomePageState extends State<MyHomePage> {
             }));
   }
 
-  // Editamos este?? para categorias?
-  // Sii me late
   Future<List<CategoryModel>> fetchCategorias() async {
     developer.log('esto es el call a categorias');
     return await dbController.getCategories() as List<CategoryModel>;
   }
 
-  //En main2 esta como se  uso la  lista de pizzas
-  // Habia olvidado importar categorymodel, ya quedo /  vava
-
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //     appBar: AppBar(title: Text('JSON')),
-  //     body: FutureBuilder(
-  //         future: callPizzas(), //Vuelve a llamar
-  //         builder: (BuildContext context, AsyncSnapshot<List<Pizza>> pizzas) {
-  //           return ListView.builder(
-  //               itemCount: (pizzas.data == null) ? 0 : pizzas.data!.length,
-  //               itemBuilder: (BuildContext context, int position) {
-  //                 return Dismissible(
-
-  //                       //Podemos quitar este, es para boorrar
-  //                     onDismissed: (item) {
-  //                       HttpHelper helper = HttpHelper();
-  //                       pizzas.data!.removeWhere((element) =>
-  //                           element.id == pizzas.data![position].id);
-  //                       helper.deletePizza(pizzas.data![position].id);
-  //                     },
-
-  //                     key: Key(position.toString()),
-  //                     child: ListTile(
-  //                       title: Text(pizzas.data![position].pizzaName),
-  //                       subtitle: Text(pizzas.data![position].description +
-  //                           ' - € ' +
-  //                           pizzas.data![position].price.toString()),
-  //                       onTap: () {
-  //                         Navigator.push(
-  //                           context,
-  //                           MaterialPageRoute(
-  //                               builder: (context) =>
-  //                                   PizzaDetail(pizzas.data![position], false)),
-  //                         );
-  //                       },
-  //                     ));
-  //               });
-  //         }),
-  //     floatingActionButton: FloatingActionButton(
-  //         child: const Icon(Icons.ac_unit_rounded),
-  //         onPressed: () {
-  //           Navigator.push(
-  //             context,
-  //             MaterialPageRoute(
-  //                 builder: (context) => PizzaDetail(Pizza(), true)),
-  //           );
-  //         }),
-  //   );
-  // }
-
-  // Future<List<ServiceModel>> () async {
-  //   return pizzas;
-  // }
 
 }

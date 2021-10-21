@@ -45,7 +45,7 @@ class DetailScreenState extends State<DetailScreen> {
       ubicacionesHorarios[location.locationID.toString()] = "";
     });
     // Asignar horarios de servicios (solo si horarios no es null)
-    if (schedules.hasData) {
+    if (schedules.hasData && schedules.data?.length != 0) {
       schedules.data?.forEach((schedule) {
         ubicacionesHorarios[schedule.locationID.toString()] =
             (ubicacionesHorarios[schedule.locationID.toString()] ?? '') +
@@ -63,8 +63,12 @@ class DetailScreenState extends State<DetailScreen> {
     locations.data?.forEach((location) {
       // Quitarle el enter de hasta el final a los horarios
       String horarios =
-          ubicacionesHorarios[location.locationID.toString()] ?? '';
-      horarios = horarios.substring(0, horarios.length - 1);
+          ubicacionesHorarios[location.locationID.toString()] ?? "";
+      if (horarios.length > 0) {
+        horarios = horarios.substring(0, horarios.length - 1);
+      } else {
+        horarios = "Horario disponible en nuestra página de Facebook";
+      }
 
       // Añadir tarjeta de ubicacion a lista
       // Guardar horarios porque #FLutter
@@ -96,15 +100,24 @@ class DetailScreenState extends State<DetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(service.name),
+        title: Text(service.categoria),
         backgroundColor: categoriesIconsColors[service.categoria],
       ),
       body: SingleChildScrollView(
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        // Service name
+        Padding(
+          padding: EdgeInsets.only(top: 24, left: 24, right: 24, bottom: 3),
+          child: Text(
+            service.name,
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          ),
+        ),
         // Service description
         Padding(
-          padding: EdgeInsets.all(24),
+          padding: EdgeInsets.only(top: 6, left: 24, right: 24, bottom: 24),
           child: Text(
             service.description,
             textAlign: TextAlign.justify,
@@ -116,7 +129,7 @@ class DetailScreenState extends State<DetailScreen> {
             padding: EdgeInsets.only(top: 6, left: 24, right: 24, bottom: 6),
             child: Text("Ubicaciones",
                 textAlign: TextAlign.left,
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold))),
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold))),
 
         FutureBuilder(
             future: this.futureLocations,
@@ -127,6 +140,7 @@ class DetailScreenState extends State<DetailScreen> {
                   future: this.futureHorarios,
                   builder: (BuildContext context,
                       AsyncSnapshot<List<ScheduleModel>> schedules) {
+                    // if (!schedules.hasData || schedules.data?.length == 0) return Text("");
                     return Column(
                       children: getUbicacionesYHorarios(locations, schedules),
                     );
