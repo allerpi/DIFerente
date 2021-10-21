@@ -4,9 +4,6 @@
         android:label="app_dif"
         android:icon="@mipmap/ic_launcher">
 
-        <!-- <meta-data android:name="com.google.android.geo.API_KEY"
-               android:value="AIzaSyABwmbt_dUgK2vPvSLOOE5mC2L5mSZaopU"/> -->
-
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

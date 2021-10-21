@@ -4,7 +4,6 @@ import '../model/schedule_model.dart';
 import '../model/location_model.dart';
 import '../controller/database_controller.dart';
 import './categories_constants.dart';
-import 'dart:developer' as developer;
 import 'package:url_launcher/url_launcher.dart';
 
 class DetailScreen extends StatefulWidget {

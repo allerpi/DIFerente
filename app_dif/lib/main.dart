@@ -5,7 +5,6 @@ import 'model/service_model.dart';
 import 'model/category_model.dart';
 import 'view/category_screen.dart';
 import 'view/category_card.dart';
-import 'dart:developer' as developer;
 
 void main() {
   runApp(MyApp());
@@ -15,7 +14,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    developer.log('Hellooooo');
     return MaterialApp(
       title: 'DIF Huixquilucan',
       theme: ThemeData(
@@ -74,7 +72,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<List<CategoryModel>> fetchCategorias() async {
-    developer.log('esto es el call a categorias');
     return await dbController.getCategories() as List<CategoryModel>;
   }
 

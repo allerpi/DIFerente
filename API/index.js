@@ -1,6 +1,7 @@
 const express = require('express');
 const mysql = require('mysql')
 const app = express();
+const cors = require('cors');
 
 app.use(express.json());
 
@@ -11,6 +12,8 @@ const connection = mysql.createConnection({
     database: /* :D */
 });
 connection.connect();
+
+app.use(cors());
 
 // Regresa una lista de todas las distintas categorías de servicios
 app.get('/categorias', (req, res) => {
@@ -35,18 +38,6 @@ app.get('/categorias/:categoria', (req, res) => {
         }
     })
 });
-
-// Regresa una lista de todos los servicios
-// app.get('/servicios', (req, res) => {
-//     connection.query('SELECT idServicio, nombre, descripcion FROM `dif_huixquilucan`.`servicios`', function (err, results, fields) {
-//         if (err) {
-//             res.status(500).send('No se puede establecer conexion con base de datos');
-//         }
-//         else {
-//             res.send(results);
-//         }
-//     })
-// });
 
 // Regresa la información de un servicio
 app.get('/servicios/:id', (req, res) => {
@@ -73,9 +64,7 @@ app.get('/ubicaciones/:id', (req, res) => {
         }
         else {
             res.send(results);
-        
         }
-console.log(results);
     })
 });
 

@@ -3,10 +3,6 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
 import 'dart:core';
-
-import 'dart:developer' as developer;
-
-import '../model/image_model.dart';
 import '../model/location_model.dart';
 import '../model/reservation_model.dart';
 import '../model/service_model.dart';

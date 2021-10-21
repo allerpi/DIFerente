@@ -1,5 +1,3 @@
-import 'service_model.dart';
-
 const keyUser = 'nombre';
 const keyAge = 'edad';
 const keyMail = 'correo';

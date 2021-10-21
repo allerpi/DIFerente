@@ -1,13 +1,10 @@
 // Pantalla que enseña servicios dentro de cada categoria
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/material/colors.dart';
 import '../controller/database_controller.dart';
 import '../model/service_model.dart';
-import '../main.dart';
 import './service_card.dart';
 import './detail_screen.dart';
-import 'dart:developer' as developer;
 import './categories_constants.dart';
 
 //Creo que deberia ser stateless, como las demas views

@@ -1,6 +1,4 @@
-import 'location_model.dart';
 import 'image_model.dart';
-import 'schedule_model.dart';
 
 const keyId = 'idServicio';
 const keyCat = 'categoria';
