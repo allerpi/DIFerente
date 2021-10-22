@@ -1,4 +1,22 @@
-# Manual de instalación
+# Manual técnico
+
+<details><summary>Diagramas y descripciones</summary>
+
+## Base de datos
+Diagrama de entidad relación
+
+<img src="./db/diagramaER.png">
+
+## Arquitectura del software
+La aplicación está construida con una arquitectura MVC (modelo-vista-controlador). Cada entidad en la base de datos (servicio, ubicación, horario) tiene un modelo. Este modelo sirve para organizar los datos recibidos del controlador y desplegarlos en las vistas. 
+
+## Diseño de pantallas
+Mapa de navegación
+
+<img src="./db/nav_tree.png">
+
+</details>
+<hr>
 
 Para correr y compilar la aplicación se necesita tener instalados [MySQL](https://www.mysql.com/downloads/), [Node.js](https://nodejs.org/en/download/), [Flutter](https://flutter.dev/docs/get-started/install), un [JDK](https://www.oracle.com/java/technologies/downloads/) y el [Android SDK](https://developer.android.com/studio#downloads). 
 
@@ -23,10 +41,11 @@ Se necesita un emulador de Android o un dispositivo físico con este sistema ope
 
 ## Correr el proyecto
 
-1. Correr la API desde el directorio raíz con el comando ` node api/index.js`.
-2. Instalar APK de release (si no se instaló previamente) en el dispositivo.
-3. Si se usó una IP privada, asegurarse que el servidor y el dispositivo móvil se encuentren en la misma red.
-4. Usarla :D
+1. Asegurarse que esté prendido MySQL.
+2. Correr la API desde el directorio raíz con el comando ` node api/index.js`.
+3. Instalar APK de release (si no se instaló previamente) en el dispositivo.
+4. Si se usó una IP privada, asegurarse que el servidor y el dispositivo móvil se encuentren en la misma red.
+5. Usarla :D
 
 ## Configuración para pruebas
 
