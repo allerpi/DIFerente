@@ -9,7 +9,7 @@ Para importar los datos (sin el esquema)
 mysql -u <usuario> -p < data.sql
 ```
 
-Para crear base de datos con información (cuidar que no haya otros archivos .sql en el directorio actual)
+Para crear base de datos con información (desde el directorio de db)
 ```
 mysql -u <usuario> -p < *.sql
 ```

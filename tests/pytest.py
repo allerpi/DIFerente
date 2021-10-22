@@ -4,10 +4,10 @@ import time
 
 desired_caps = dict(
     platformName='Android',
-    platformVersion='11',
+    platformVersion=' :D ',
     automationName='uiautomator2',
-    deviceName='SM A015M',
-    app='/Users/vpinedagon2000/Documents/School/5_sem/DIFerente/app_dif/build/app/outputs/flutter-apk/app-release.apk'
+    deviceName=' :D ',
+    app=' :D '
 )
 
 class PythonOrgSearch(unittest.TestCase):
