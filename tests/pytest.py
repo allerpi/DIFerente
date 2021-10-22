@@ -39,12 +39,14 @@ class PythonOrgSearch(unittest.TestCase):
         cat.click()
         serv = driver.find_element_by_accessibility_id("Estimulación Temprana")
         serv.click()
-        map_button = driver.find_element_by_xpath("(//android.view.View[@content-desc=\"Av. México 175, Colonia Santiago Yacuitlalpan, Huixquilucan, C.P. 52766\nHorario disponible en nuestra página de Facebook\"])[1]")
+        map_button = driver.find_element_by_accessibility_id("Paseo Huixquilucan Mz. 6, Lt. 7\nHorario disponible en nuestra página de Facebook")
         map_button.click()
 
         time.sleep(5)
 
         driver.back()
+        time.sleep(5)
+
         driver.back()
         driver.back()
 

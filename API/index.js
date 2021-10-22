@@ -81,24 +81,24 @@ app.get('/horarios/:id', (req, res) => {
 });
 
 // Inserta una nueva reservación
-app.post('/reservacion', (req, res) => {
-    const nombre = req.body.nombre;
-    const edad = req.body.edad;
-    const correo = req.body.correo;
-    const telefono = req.body.telefono;
-    const fecha = req.body.fecha;
-    const idServicio = req.body.idServicio;
+// app.post('/reservacion', (req, res) => {
+//     const nombre = req.body.nombre;
+//     const edad = req.body.edad;
+//     const correo = req.body.correo;
+//     const telefono = req.body.telefono;
+//     const fecha = req.body.fecha;
+//     const idServicio = req.body.idServicio;
     
-    connection.query('INSERT INTO `reservaciones` SET ?', {nombre, edad, correo, telefono, fecha, idServicio}, function (err, results, fields) {
-        if (err) {
-            console.log(err);
-            res.status(500).send('No se puede establecer conexion con base de datos');
-        }
-        else {
-            res.send(results);
-        }
-    })
-})
+//     connection.query('INSERT INTO `reservaciones` SET ?', {nombre, edad, correo, telefono, fecha, idServicio}, function (err, results, fields) {
+//         if (err) {
+//             console.log(err);
+//             res.status(500).send('No se puede establecer conexion con base de datos');
+//         }
+//         else {
+//             res.send(results);
+//         }
+//     })
+// })
 
 // PORT
 const port = 3000;
